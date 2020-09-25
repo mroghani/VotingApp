@@ -1,0 +1,25 @@
+<html><head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+        * {
+            direction: rtl;
+        }
+    </style>
+</head><body>
+
+<div class="mt-5 d-flex  flex-column align-times-center justify-content-center">
+{% if error_message %}<p class="text-center text-danger"> {{ error_message }}</p>{% endif %}
+    {% if success_message %}<p class="text-center text-success"> {{ success_message }}</p>{% endif %}
+
+<form class="my-5 d-flex flex-column align-items-center" action="#" method="post">
+    {% csrf_token %}
+    {% for candidate in candidates %}
+    <div class="my-1 custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" name="vote" id="candidate{{ forloop.counter }}" value="{{ candidate.id }}">
+    <label class="custom-control-label" for="candidate{{ forloop.counter }}">{{ candidate.name }}</label><br>
+    </div>
+        {% endfor %}
+    <input class="my-3 btn btn-primary" type="submit" value="رای بده :)">
+</form>
+</div>
+</body></html>
